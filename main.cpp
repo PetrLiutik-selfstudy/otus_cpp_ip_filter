@@ -6,19 +6,14 @@
 
 
 int main(int argc, char const *argv[]) {
-  std::cout << "Version: " << ver_major() << "." << ver_minor() << "." << ver_patch() << std::endl;
+  ip_pool_t ipPool = FormIpPool(std::cin);
 
-  std::ifstream is ("ip_filter.tsv", std::ifstream::binary);
+  SortIpPool(ipPool);
+  PrintIpPool(ipPool, std::cout);
 
-  ip_pool_t ipPool = FormIpPool(/*std::cin*/is);
-
-  for(auto it: ipPool)
-  {
-    std::cout << "IP: ";
-    for(auto it1: it)
-      std::cout << it1 << ".";
-    std::cout << std::endl;
-  }
+  PrintIpPool(IpFilter(1, ipPool), std::cout);
+  PrintIpPool(IpFilter(46, 70, ipPool), std::cout);
+  PrintIpPool(IpFilterAny(46, ipPool), std::cout);
 
   return 0;
 }
