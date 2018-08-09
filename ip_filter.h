@@ -5,7 +5,7 @@
 #include <memory>
 #include <sstream>
 
-const size_t IP_ELEMS = 4;
+constexpr size_t IP_ELEMS = 4;
 
 /**
  * @brief Тип IP-адреса.
