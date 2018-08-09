@@ -1,9 +1,6 @@
 #include <iostream>
 #include "ver.h"
 #include "ip_filter.h"
-#include <fstream>
-
-
 
 int main(int argc, char const *argv[]) {
   ip_pool_t ipPool = FormIpPool(std::cin);

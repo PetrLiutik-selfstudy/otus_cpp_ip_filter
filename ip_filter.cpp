@@ -2,7 +2,12 @@
 #include <algorithm>
 #include <iterator>
 
-// Разбивка строки на подстроки.
+/**
+ * @brief Разбивка строки на подстроки.
+ * @param str - строка.
+ * @param delim - разделитель.
+ * @return
+ */
 std::vector<std::string> Split(const std::string &str, char delim) {
 
   std::vector<std::string> result;
@@ -57,7 +62,12 @@ void SortIpPool(ip_pool_t& ipPool) {
   });
 }
 
-// Собственно сама фильтрация.
+/**
+ * @brief Собственно сама фильтрация.
+ * @param ipPool - пул IP-адресов.
+ * @param matchFunc - лямбда-функция проверки соответсвия IP-адреса.
+ * @return
+ */
 template <typename T>
 ip_pool_t IpFilter(const ip_pool_t& ipPool, T matchFunc) {
   ip_pool_t ipPoolFiltered;
