@@ -10,12 +10,10 @@ add_executable(${PROJECT_NAME} main.cpp)
 add_library(ver_lib ver.cpp)
 add_library(ip_filter_lib ip_filter.cpp)
 
-
-set_target_properties(
-        ${PROJECT_NAME} PROPERTIES
-        CXX_STANDARD 14
-        CXX_STANDARD_REQUIRED ON
-        COMPILE_OPTIONS -Wpedantic -Wall -Wextra
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  CXX_STANDARD 14
+  CXX_STANDARD_REQUIRED ON
+  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
 target_link_libraries(${PROJECT_NAME} ver_lib)

@@ -65,7 +65,7 @@ void SortIpPool(ip_pool_t& ipPool) {
 /**
  * @brief Собственно сама фильтрация.
  * @param ipPool - пул IP-адресов.
- * @param matchFunc - лямбда-функция проверки соответсвия IP-адреса.
+ * @param matchFunc - лямбда-функция проверки соответствия IP-адреса.
  * @return
  */
 template <typename T>
