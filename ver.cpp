@@ -1,20 +1,17 @@
 #include "ver.h"
-//#include "version.h"
+#include "version.h"
 
 int ver_major()
 {
-//  return PROJECT_VERSION_MAJOR;
-  return 1;
+  return PROJECT_VERSION_MAJOR;
 }
 
 int ver_minor()
 {
-//  return PROJECT_VERSION_MINOR;
-  return 1;
+  return PROJECT_VERSION_MINOR;
 }
 
 int ver_patch()
 {
-//  return PROJECT_VERSION_PATCH;
-  return 1;
+  return PROJECT_VERSION_PATCH;
 }
