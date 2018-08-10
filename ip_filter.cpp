@@ -34,12 +34,17 @@ ip_pool_t FormIpPool(std::istream& inputStream) {
     std::vector<std::string> splitStr = Split(str, '.');
 
     if(splitStr.size() == IP_ELEMS) {
-      ip_addr_t ipAddr;
-      std::size_t j = 0;
-      for(auto it: splitStr)
-        ipAddr[j++] = std::stoi(it);
+      try {
+        ip_addr_t ipAddr;
+        std::size_t j = 0;
 
-      ipPool.emplace_back(ipAddr);
+        for(auto it: splitStr)
+          ipAddr[j++] = std::stoi(it);
+
+        ipPool.emplace_back(ipAddr);
+      }
+      catch (const std::exception &e) {
+      }
     }
 
     // Чтение до конца строки.
