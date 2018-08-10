@@ -76,19 +76,46 @@ TEST(ip_filter_test_case, ip_sort) {
                                        {68,  202, 216, 62},
                                        {5,   189, 203, 79}};
 
-  std::sort(actual.begin(), actual.end(), std::greater<>());
+  SortIpPool(input);
 
-  EXPECT_EQ(expected, actual);                                      
+  EXPECT_EQ(input, result);                                     
 }
 
 TEST(ip_filter_test_case, ip_filter_firts_elem) {
-  EXPECT_EQ(1, 1);
+  std::vector<ip_addr_t> input {{197, 42,  2,   124},
+                                {180, 251, 148, 71},
+                                {180,  10,  3,  43},
+                                {68,  202, 216, 62},
+                                {5,   189, 203, 79}};
+
+  const std::vector<ip_addr_t> result {{180, 251, 148, 71}};
+
+  EXPECT_EQ(IpFilter(180, 251, input), result);
 }
 
 TEST(ip_filter_test_case, ip_filter_firts_second_elems) {
-  EXPECT_EQ(1, 1);
+  std::vector<ip_addr_t> input {{197, 42,  2,   124},
+                                {180, 251, 148, 71},
+                                {180,  10,  3,  43},
+                                {68,  202, 216, 62},
+                                {5,   189, 203, 79}};
+
+  const std::vector<ip_addr_t> result {{180, 251, 148, 71},
+                                       {180,  10,  3,   43}};
+
+  EXPECT_EQ(IpFilter(180,  input), result);
 }
 
 TEST(ip_filter_test_case, ip_filter_any) {
-  EXPECT_EQ(1, 1);
+  std::vector<ip_addr_t> input {{197, 42,  2,   202},
+                                {180, 251, 202, 71},
+                                {95,  10,  3,   43},
+                                {68,  202, 216, 62},
+                                {5,   189, 203, 79}};
+
+  const std::vector<ip_addr_t> result {{197, 42,  2,   202},
+                                       {180, 251, 202, 71},
+                                       {68,  202, 216, 62}};
+
+  EXPECT_EQ(IpFilterAny(202, input), result);
 }
