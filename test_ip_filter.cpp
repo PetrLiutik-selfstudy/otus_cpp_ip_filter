@@ -63,27 +63,22 @@ TEST(ip_filter_test_case, ip_form_pool) {
   EXPECT_EQ(FormIpPool(iss), result);
 }
 
-TEST(ip_filter_test_case, ip_str_split) {
-  std::vector<std::string> input{"5.189.203.79",
-                                 "1.2.3.4",
-                                 "a.b.3.4",
-                                 "001.002.003.004",
-                                 "100.200.3  .400",
-                                 " 100 . 200 . 300 . 400 "};
-
-  std::vector<std::vector<std::string>> result{{"5",     "189",   "203",   "79"},
-                                               {"1",     "2",     "3",     "4"},
-                                               {"a",     "b",     "3",     "4"},
-                                               {"001",   "002",   "003",   "004"},
-                                               {"100",   "200",   "3  ",   "400"},
-                                               {" 100 ", " 200 ", " 300 ", " 400 "}};
-
-  for (auto i = 0; i < input.size(); ++i)
-    EXPECT_EQ(Split(input.at(i), '.'), result.at(i)) << "where i = " << i;
-}
-
 TEST(ip_filter_test_case, ip_sort) {
-  EXPECT_EQ(1, 1);
+  std::vector<ip_addr_t> input {{68,  202, 216, 62},
+                                {5,   189, 203, 79},
+                                {197, 42,  2,   124},
+                                {95,  10,  3,   43},
+                                {180, 251, 148, 71}};
+
+  const std::vector<ip_addr_t> result {{197, 42,  2,   124},
+                                       {180, 251, 148, 71},
+                                       {95,  10,  3,   43},
+                                       {68,  202, 216, 62},
+                                       {5,   189, 203, 79}};
+
+  std::sort(actual.begin(), actual.end(), std::greater<>());
+
+  EXPECT_EQ(expected, actual);                                      
 }
 
 TEST(ip_filter_test_case, ip_filter_firts_elem) {
