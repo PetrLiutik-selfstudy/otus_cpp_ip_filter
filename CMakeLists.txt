@@ -50,3 +50,5 @@ set(CPACK_PACKAGE_CONTACT petr_lutik@mail.ru)
 
 include (CPack)
 
+add_test(ver_test_case test_${PROJECT_NAME})
+add_test(ip_filter_test_case test_${PROJECT_NAME})
