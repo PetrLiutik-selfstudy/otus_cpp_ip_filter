@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "gtest/gtest.h"
 #include "ver.h"
 #include "ip_filter.h"
@@ -19,14 +20,14 @@ TEST(ip_filter_test_case, ip_form_pool) {
   std::stringstream iss;
 
   iss << "5.189.203.79\t30\t0\n"   <<
-         "197.42.2.124\t0\t2\n"    <<
+         "197.42.2.124\tabcd\n"    <<
          "95.10.3.43\t72\t0\n"     <<
          "180.251.148.71\t1\t0\n"  <<
          "113.144.6.220\t6\t0\n"   <<
          "89.236.227.204\t0\t1\n"  <<
          "67.250.31.212\t1\t0\n"   <<
          "67.250.31.212\t1\t0\n"   <<
-         "177.66.186.82\t2\t0\n"   <<
+         "177.66.186.82\tololo\n"  <<
          "107.209.121.224\t2\t0\n" <<
          "213.103.211.108\t0\t2\n" <<
          "27.49.172.153\t0\t3\n"   <<
@@ -43,7 +44,7 @@ TEST(ip_filter_test_case, ip_form_pool) {
          "a.b.c.d\t278\t0\n"       <<
          ".\t24\t0\n";
 
-  ip_pool_t ipPool{{5,   189, 203, 79},
+  ip_pool_t result{{5,   189, 203, 79},
                    {197, 42,  2,   124},
                    {95,  10,  3,   43},
                    {180, 251, 148, 71},
@@ -59,11 +60,26 @@ TEST(ip_filter_test_case, ip_form_pool) {
                    {78,  158, 5,   183},
                    {27,  109, 142, 224}};
 
-  EXPECT_EQ(FormIpPool(iss), ipPool);
+  EXPECT_EQ(FormIpPool(iss), result);
 }
 
 TEST(ip_filter_test_case, ip_str_split) {
-  EXPECT_EQ(1, 1);
+  std::vector<std::string> input{"5.189.203.79",
+                                 "1.2.3.4",
+                                 "a.b.3.4",
+                                 "001.002.003.004",
+                                 "100.200.3  .400",
+                                 " 100 . 200 . 300 . 400 "};
+
+  std::vector<std::vector<std::string>> result{{"5",     "189",   "203",   "79"},
+                                               {"1",     "2",     "3",     "4"},
+                                               {"a",     "b",     "3",     "4"},
+                                               {"001",   "002",   "003",   "004"},
+                                               {"100",   "200",   "3  ",   "400"},
+                                               {" 100 ", " 200 ", " 300 ", " 400 "}};
+
+  for (auto i = 0; i < input.size(); ++i)
+    EXPECT_EQ(Split(input.at(i), '.'), result.at(i)) << "where i = " << i;
 }
 
 TEST(ip_filter_test_case, ip_sort) {
