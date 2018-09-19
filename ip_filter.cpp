@@ -90,12 +90,12 @@ ip_pool_t IpFilter(int addr, const ip_pool_t& ipPool) {
   return IpFilter(ipPool, matchFunc);
 }
 
-ip_pool_t IpFilter(int addr1, int addr2, ip_pool_t& ipPool) {
+ip_pool_t IpFilter(int addr1, int addr2, const ip_pool_t& ipPool) {
   auto matchFunc = [addr1, addr2](auto& ip){ return ip[0] == addr1 && ip[1] == addr2; };
   return IpFilter(ipPool, matchFunc);
 }
 
-ip_pool_t IpFilterAny(int addr, ip_pool_t& ipPool) {
+ip_pool_t IpFilterAny(int addr, const ip_pool_t& ipPool) {
   auto matchFunc = [addr](auto& ip){
     return ip[0] == addr || ip[1] == addr || ip[2] == addr || ip[3] == addr;
   };

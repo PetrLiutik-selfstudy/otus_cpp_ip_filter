@@ -52,7 +52,7 @@ ip_pool_t IpFilter(int addr, const ip_pool_t& ipPool);
  * @param ipPool - пул IP-адресов.
  * @return отфильтрованный пул IP-адресов.
  */
-ip_pool_t IpFilter(int addr1, int addr2, ip_pool_t& ipPool);
+ip_pool_t IpFilter(int addr1, int addr2, const ip_pool_t& ipPool);
 
 /**
  * @brief Фильтрация по любому элементу IP-адреса.
@@ -60,4 +60,4 @@ ip_pool_t IpFilter(int addr1, int addr2, ip_pool_t& ipPool);
  * @param ipPool - пул IP-адресов.
  * @return отфильтрованный пул IP-адресов.
  */
-ip_pool_t IpFilterAny(int addr, ip_pool_t& ipPool);
+ip_pool_t IpFilterAny(int addr, const ip_pool_t& ipPool);
